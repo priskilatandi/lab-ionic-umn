@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Hello Ion</title>
+        <link rel="stylesheet" href="https://unpkg.com/@ionic/core@latest/css/ionic.bundle.css" />
+        <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+        <style>
+            .unimedia{
+                --background : aqua;
+                --color : blue; 
+             }
+        </style>
+    </head>
+    <body>
+        <ion-app>
+            <ion-header>
+                <ion-toolbar>
+                    <ion-title>Good Afternoon</ion-title>
+                </ion-toolbar>
+            </ion-header>
+            <ion-card class = "unimedia">
+                <ion-card-header>
+                    <ion-item>
+                        <ion-text slot ="start">Umn Balance</ion-text>
+                        <ion-text slot="end">Rp.13.000</ion-text>
+                    </ion-item>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col><ion-icon size="large" name="cash"></ion-icon>
+                                <br>
+                                Test1</ion-col>
+                            <ion-col><ion-icon size="large" name="wallet"></ion-icon>
+                                <br>
+                                Test2</ion-col>
+                            <ion-col><ion-icon size="large" name="star-half"></ion-icon>
+                                <br>
+                                Test3</ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-card-content>
+            </ion-card>
+            <ion-footer>
+                <ion-toolbar>
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col><ion-icon size="large" name="home"></ion-icon>Home</ion-col>
+                            <ion-col><ion-icon size="large" name="laptop"></ion-icon>Activity</ion-col>
+                            <ion-col><ion-icon size="large" name="card"></ion-icon>Payment</ion-col>
+                            <ion-col><ion-icon size="large" name="archive"></ion-icon>Inbox</ion-col>
+                            <ion-col><ion-icon size="large" name="key"></ion-icon>Account</ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-toolbar>
+            </ion-footer>
+        </ion-app>
+        <script src="https://unpkg.com/@ionic/core@latest/dist/ionic.js"></script>
+    </body>
+</html>

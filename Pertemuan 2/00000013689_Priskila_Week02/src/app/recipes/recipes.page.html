@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title><b>Recipes</b></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<ion-item *ngFor="let recipe of arrayRecipes let i=index" [routerLink]="['./', recipe.id]">
+			<ion-avatar slot="start">
+				<ion-img [src]="recipe.imageUrl"></ion-img>
+			</ion-avatar>
+			<ion-label>{{ recipe.title }}</ion-label>
+		</ion-item>
+	</ion-list>
+	<div *ngIf="arrayRecipes.length < 1">
+	</div>
+</ion-content>
