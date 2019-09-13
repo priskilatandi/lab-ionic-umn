@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NavController, ModalController, ActionSheetController } from '@ionic/angular';
+import { Place } from '../../place.model';
+import { PlacesService } from '../../places.service';
+import { CreateBookingComponent } from '../../../bookings/create-booking/create-booking.component';
 
 @Component({
   selector: 'app-place-detail',
@@ -9,15 +12,79 @@ import { NavController } from '@ionic/angular';
 })
 export class PlaceDetailPage implements OnInit {
 
-  constructor(private router: Router, private navCtrl: NavController) { }
+  place: Place;
+
+  constructor(
+    private router: ActivatedRoute, 
+    private navCtrl: NavController,
+    private placesService: PlacesService,
+    private modalCtrl: ModalController,
+    private actionSheetController: ActionSheetController
+  ) { }
 
   ngOnInit() {
+    this.router.paramMap.subscribe(paramMap => {
+      if(!paramMap.has('placeId')){
+        this.navCtrl.navigateBack('/places/tabs/discover');
+        return;
+      }
+      this.place = this.placesService.getPlace(paramMap.get('placeId'));
+    });
   }
 
-  goBack(){
-    // this.router.navigateByUrl('/places/tabs/discover');
-    this.router.navigateByUrl('/places/tabs/discover');
-    // this.navCtrl.pop();
+  // goBack(){
+  //   // this.router.navigateByUrl('/places/tabs/discover');
+  //   this.router.navigateBack('/places/tabs/discover');
+  //   // this.navCtrl.pop();
+  // }
+
+  // onBookPlace(){
+  //   // this.router.navigateByUrl('/places/tabs/discover');
+  //   // this.router.navigateBack('/places/tabs/discover');
+  //   // this.navCtrl.pop();
+  //   this.modalCtrl
+  //     .create({
+  //       component: CreateBookingComponent,
+  //       componentProps: { selectedPlace: this.place }
+  //     })
+  //     .then(modalEL => {
+  //       modalEL.present();
+  //       return modalEL.onDidDismiss();
+  //     })
+  //     .then(resultData => {
+  //       console.log(resultData.data, resultData.role);
+  //       if(resultData.role === 'confirm'){
+  //         console.log('BOOKED');
+  //       }
+  //     });
+  // }
+
+  async BookPlace() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Book Place',
+      buttons:[{
+          text: 'Book w/ Random Date',
+          handler: () => {
+            this.modalCtrl.create({ component: CreateBookingComponent,
+            componentProps: { selectedPlace: this.place }})
+            .then(modalElement => {
+              modalElement.present();
+              return modalElement.onDidDismiss();
+            })
+            .then(resultData => {
+              console.log(resultData);
+            });
+          }
+        }, {
+          text: 'Cancel',
+          icon: 'close',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+        }
+      }]
+    });
+    await actionSheet.present();
   }
 
 }
