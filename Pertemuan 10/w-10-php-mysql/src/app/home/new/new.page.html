@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New Booking</ion-title>
+    <ion-buttons>
+      <ion-button (click)="closeModal()" slot="icon-only">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #f='ngForm' (ngSubmit)='addNewBooking(f)'>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-list>
+            <ion-item>
+              <ion-label position="floating">Booking Name</ion-label>
+              <ion-input type="text" name="bookingName" placeholder="Booking Initiator's name" ngModel></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Topic</ion-label>
+              <ion-input type="text" name="topic" placeholder="Topic" ngModel></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Details</ion-label>
+              <ion-input type="text" name="details" placeholder="Details" ngModel></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Booking Date</ion-label>
+              <ion-input type="text" name="bookingDate" placeholder="YYYY-MM-DD" ngModel></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Start Hour</ion-label>
+              <ion-input type="text" name="startHour" placeholder="hh:mm" ngModel></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">End Hour</ion-label>
+              <ion-input type="text" name="endHour" placeholder="hh:mm" ngModel></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Creator</ion-label>
+              <ion-input type="text" name="creator" placeholder="Your Name" ngModel></ion-input>
+            </ion-item>
+          </ion-list>
+          <ion-button expand='block' type="submit">Save</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
