@@ -1,15 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
+import { PlaceService } from './place.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit{
 
-  constructor(private router: Router, private authSvc: AuthService) { }
+  address = '';
+
+  constructor(private placeSvc: PlaceService, private router: Router, private authSvc: AuthService) { }
+
+  ngOnInit(){
+    this.placeSvc.getAddress().subscribe(
+      currAddress => {
+        this.address = currAddress;
+      }
+    );
+  }
 
   onLogout() {
     this.authSvc.logout();
