@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Discover</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-segment [(ngModel)]="category" color="tertiary" (ionChange)="onFilterUpdate($event)">
+    <ion-segment-button checked value="discover">Article</ion-segment-button>
+    <ion-segment-button value="product">Product</ion-segment-button>
+  </ion-segment>
+  <ion-grid [ngSwitch]="category">
+    <ion-grid *ngSwitchCase="'discover'">
+
+      <ng-container *ngIf="!articles || articles.length == 0">
+        <div *ngFor="let n of [0,1,2]" padding>
+          <ion-skeleton-text></ion-skeleton-text>
+          <p>
+            <ion-skeleton-text class="fake-skeleton"></ion-skeleton-text>
+          </p>
+        </div>
+      </ng-container>
+
+      <ion-card>
+          <ion-img [src]="article.imageUrl"></ion-img>
+          <ion-card-header>
+            <ion-card-title>{{ article.title }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content text-right padding>
+            <ion-button style="color: black;" fill="clear" [routerLink]="['/','home','tabs','discover',article.id]">More</ion-button>
+        </ion-card-content>
+      </ion-card>
+
+      <div *ngFor="let art of articles">
+
+        <ion-item lines="inset" button [routerLink]="['/','home','tabs','discover',art.id]">
+          <ion-thumbnail slot="start">
+            <ion-img [src]="art.imageUrl"></ion-img>
+          </ion-thumbnail>
+          <ion-label>
+            {{ art.title }}
+            <p>{{ art.description }}</p>
+          </ion-label>
+        </ion-item>
+        
+      </div>
+
+    </ion-grid>
+    <ion-grid *ngSwitchCase="'product'">
+
+      <ion-searchbar type="text" debounce="500" (ionInput)="getItems($event)" animated></ion-searchbar>
+
+      <ng-container *ngIf="!product || product.length == 0">
+        <div *ngFor="let n of [0,1,2]" padding>
+          <ion-skeleton-text></ion-skeleton-text>
+          <p>
+            <ion-skeleton-text class="fake-skeleton"></ion-skeleton-text>
+          </p>
+        </div>
+      </ng-container>
+
+      <div *ngFor="let item of product">
+
+        <ion-item lines="inset" button [routerLink]="['/','home','tabs','product',item.id]">
+          <ion-thumbnail slot="start">
+            <ion-img [src]="item.imageUrl"></ion-img>
+          </ion-thumbnail>
+          <ion-label>
+            {{ item.brand }}
+            <p>{{ item.subBrand }}</p>
+          </ion-label>
+        </ion-item>
+
+      </div>
+      
+    </ion-grid>
+  </ion-grid>
+</ion-content>

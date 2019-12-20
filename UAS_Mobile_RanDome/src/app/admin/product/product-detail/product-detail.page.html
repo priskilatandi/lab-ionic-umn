@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin/tabs/product"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ product.brand }}</ion-title>
+    <ion-buttons slot="end">
+        <ion-button icon-only [routerLink]="['/','admin','tabs','product','edit',productId]" routerDirection="forward">
+          <ion-icon name="create"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2">
+        <ion-card>
+          <ion-row>
+            <ion-col>
+              <ion-card-content>
+                <ion-img [src]="product.imageUrl" style="width: 100%;"></ion-img>
+                <ion-buttons>
+                  <ion-button icon-only color="danger">
+                    <ion-icon name="heart"></ion-icon> &nbsp; &nbsp;
+                    <ion-label style="color: black;">Favourite</ion-label>
+                  </ion-button>
+                </ion-buttons>
+              </ion-card-content>
+            </ion-col>
+            <ion-col>
+              <ion-card-content>
+                <ion-card-title>{{ product.brand }}</ion-card-title>
+                <h2>{{ product.subBrand }}</h2>
+                <br>
+                <h3>Price (estimated):</h3>
+                <h2><b>{{ product.price | currency:'Rp' }}</b></h2>
+              </ion-card-content>          
+            </ion-col>
+          </ion-row>
+          <ion-card-content>
+            <p style="text-align: justify;">{{ product.description }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

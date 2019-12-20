@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Sign Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <form #f="ngForm" (ngSubmit)="onSignUp(f)">
+    <ion-list>
+      <ion-item>
+        <ion-label position="fixed">First Name</ion-label>
+        <ion-input
+          required
+          ngModel
+          name="firstname"
+          type="text"
+          placeholder="First Name"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="fixed">Last Name</ion-label>
+        <ion-input
+          required
+          ngModel
+          name="lastname"
+          type="text"
+          placeholder="Last Name"
+        ></ion-input>
+      </ion-item>
+        <ion-radio-group>
+          <ion-list-header>
+            <ion-label>Gender</ion-label>
+          </ion-list-header>
+          <ion-item style="align-self: center;">
+
+            <ion-item>
+              <ion-label>Male</ion-label>
+                <ion-radio
+                ngModel
+                name="gender" 
+                value="male">
+              </ion-radio>
+            </ion-item>
+  
+            <ion-item>
+              <ion-label>Female</ion-label>
+                <ion-radio
+                ngModel
+                name="gender" 
+                value="female">
+              </ion-radio>
+            </ion-item>
+
+          </ion-item>
+        </ion-radio-group>
+      <ion-item>
+        <ion-label position="fixed">Email</ion-label>
+        <ion-input
+          required
+          ngModel
+          name="email"
+          type="email"
+          placeholder="Your email here"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="fixed">Password</ion-label>
+        <ion-input
+          required
+          ngModel
+          name="pwd"
+          type="password"
+          minlength="6"
+          placeholder="******"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="fixed">Confirm Password</ion-label>
+        <ion-input
+          required
+          ngModel
+          name="confirmPwd"
+          type="password"
+          minlength="6"
+          placeholder="******"
+        ></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" [disabled]="!f.valid" type="submit">Sign Up</ion-button>
+    <ion-button expand="block" fill='outline' color='danger' (click)='onCancel()'>Cancel</ion-button>
+  </form>
+</ion-content>

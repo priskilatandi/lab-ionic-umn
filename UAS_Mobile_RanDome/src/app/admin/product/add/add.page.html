@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/admin/tabs/product"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Add Product</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+      <ion-list lines="full">
+        <ion-item>
+          <ion-input required type="text" placeholder="Brand" [(ngModel)]="product.brand"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input required type="text" placeholder="Type of Brand" [(ngModel)]="product.subBrand"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input required type="text" placeholder="Description" [(ngModel)]="product.description"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input required type="text" placeholder="Photo" [(ngModel)]="product.imageUrl"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input required type="number" placeholder="Price" [(ngModel)]="product.price"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-button expand="block" (click)="save()">Save</ion-button>
+    </ion-content>

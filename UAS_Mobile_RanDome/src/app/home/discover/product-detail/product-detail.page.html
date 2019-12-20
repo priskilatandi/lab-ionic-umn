@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home/tabs/discover"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ product.brand }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="!product || product.length == 0">
+    <div *ngFor="let n of [0,1,2,3,4,5]" padding>
+      <ion-skeleton-text></ion-skeleton-text>
+      <p>
+        <ion-skeleton-text class="fake-skeleton"></ion-skeleton-text>
+      </p>
+    </div>
+  </ng-container>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2">
+        <ion-card>
+          <ion-row>
+            <ion-col>
+              <ion-card-content>
+                <ion-img [src]="product.imageUrl" style="width: 100%;"></ion-img>
+                <ion-buttons>
+                  <ion-button icon-only color="danger">
+                    <ion-icon [name]="isFavourite ? 'heart' : 'heart-empty'"></ion-icon> &nbsp; &nbsp;
+                    <ion-label style="color: black;" (click)="Favourite(product)">{{ isFavourite ? 'Remove' : 'Favourite' }}</ion-label>
+                  </ion-button>
+                </ion-buttons>
+              </ion-card-content>
+            </ion-col>
+            <ion-col>
+              <ion-card-content>
+                <ion-card-title>{{ product.brand }}</ion-card-title>
+                <h2>{{ product.subBrand }}</h2>
+                <br>
+                <h3>Price (estimated):</h3>
+                <h2><b>{{ product.price | currency:'Rp' }}</b></h2>
+              </ion-card-content>          
+            </ion-col>
+          </ion-row>
+          <ion-card-content>
+            <p style="text-align: justify;">{{ product.description }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin/tabs/article"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Article</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list lines="full">
+      <ion-item>
+        <ion-input required type="text" placeholder="Title" [(ngModel)]="article.title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input required type="text" placeholder="Description" [(ngModel)]="article.description"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input required type="text" placeholder="Photos" [(ngModel)]="article.imageUrl"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" (click)="saveArticle()">Save</ion-button>
+  </ion-content>
